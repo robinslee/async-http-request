@@ -1,5 +1,5 @@
 /*!
- * async-promise-request
+ * async-promised-request
  * Copyright(c) 2017 Robin Li
  * MIT Licensed
  */
@@ -8,23 +8,23 @@
 
 const request = require("request");
 const staticMethods = Object.keys(request);
-const factoryMethods = [ "defaults", "forerer" ];
-const httpMethods = [ "get", "post", "put", "patch", "del", "delete", "head", "options" ];
+const staticFactoryMethods = [ "defaults", "forerer" ];
+const staticHttpMethods = [ "get", "post", "put", "patch", "del", "delete", "head", "options" ];
 
 const AsyncRequest = _wrapRequest();
 
-staticMethods.forEach(method => {
-    if (httpMethods.includes(method)) {
+for (let method of staticMethods) {
+    if (staticHttpMethods.includes(method)) {
         AsyncRequest[method] = _wrapRequest(request[method]);
-    } else if (factoryMethods.includes(method)) {
+    } else if (staticFactoryMethods.includes(method)) {
         AsyncRequest[method] = opt => _wrapRequest(request[method](opt));
     } else {
         AsyncRequest[method] = request[method];
     }
-});
+}
 
 /**
- * Export a request wrapped with a Promise instance
+ * Export a request wrapped with Promise instance
  *
  * @type {Function}
  */
