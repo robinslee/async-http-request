@@ -13,17 +13,6 @@ const staticHttpMethods = [ "get", "post", "put", "patch", "del", "delete", "hea
 
 const AsyncRequest = _wrapRequest();
 
-<<<<<<< HEAD
-staticMethods.forEach(method => {
-	if (typeof method === "function") {
-		if (httpMethods.includes(method)) {
-		    AsyncRequest[method] = _wrapRequest(request[method]);
-		} else if (factoryMethods.includes(method)) {
-		    AsyncRequest[method] = opt => _wrapRequest(request[method](opt));
-		} else {
-		    AsyncRequest[method] = request[method];
-		}
-=======
 for (let method of staticMethods) {
     if (staticHttpMethods.includes(method)) {
         AsyncRequest[method] = _wrapRequest(request[method]);
@@ -31,7 +20,6 @@ for (let method of staticMethods) {
         AsyncRequest[method] = opt => _wrapRequest(request[method](opt));
     } else {
         AsyncRequest[method] = request[method];
->>>>>>> 609c1f165e1dd0260ad81ae8858077857dcde5d2
     }
 }
 
