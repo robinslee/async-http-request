@@ -8,11 +8,12 @@
 
 const request = require("request");
 const staticMethods = Object.keys(request);
-const factoryMethods = [ "defaults", "forerer" ];
-const httpMethods = [ "get", "post", "put", "patch", "del", "delete", "head", "options" ];
+const staticFactoryMethods = [ "defaults", "forerer" ];
+const staticHttpMethods = [ "get", "post", "put", "patch", "del", "delete", "head", "options" ];
 
 const AsyncRequest = _wrapRequest();
 
+<<<<<<< HEAD
 staticMethods.forEach(method => {
 	if (typeof method === "function") {
 		if (httpMethods.includes(method)) {
@@ -22,11 +23,20 @@ staticMethods.forEach(method => {
 		} else {
 		    AsyncRequest[method] = request[method];
 		}
+=======
+for (let method of staticMethods) {
+    if (staticHttpMethods.includes(method)) {
+        AsyncRequest[method] = _wrapRequest(request[method]);
+    } else if (staticFactoryMethods.includes(method)) {
+        AsyncRequest[method] = opt => _wrapRequest(request[method](opt));
+    } else {
+        AsyncRequest[method] = request[method];
+>>>>>>> 609c1f165e1dd0260ad81ae8858077857dcde5d2
     }
-});
+}
 
 /**
- * Export a request wrapped with a Promise instance
+ * Export a request wrapped with Promise instance
  *
  * @type {Function}
  */
