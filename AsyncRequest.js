@@ -1,5 +1,5 @@
 /*!
- * async-promise-request
+ * async-promised-request
  * Copyright(c) 2017 Robin Li
  * MIT Licensed
  */
@@ -14,12 +14,14 @@ const httpMethods = [ "get", "post", "put", "patch", "del", "delete", "head", "o
 const AsyncRequest = _wrapRequest();
 
 staticMethods.forEach(method => {
-    if (httpMethods.includes(method)) {
-        AsyncRequest[method] = _wrapRequest(request[method]);
-    } else if (factoryMethods.includes(method)) {
-        AsyncRequest[method] = opt => _wrapRequest(request[method](opt));
-    } else {
-        AsyncRequest[method] = request[method];
+	if (typeof method === "function") {
+		if (httpMethods.includes(method)) {
+		    AsyncRequest[method] = _wrapRequest(request[method]);
+		} else if (factoryMethods.includes(method)) {
+		    AsyncRequest[method] = opt => _wrapRequest(request[method](opt));
+		} else {
+		    AsyncRequest[method] = request[method];
+		}
     }
 });
 
@@ -44,11 +46,11 @@ function _wrapRequest(doRequest = request) {
         doRequest(opt, ...args.concat((error, response, body) => {
             if (error) {
                 reject(error);
-            }
-            if (resolveWithResponse) {
+            } else if (resolveWithResponse) {
                 resolve(response);
+            } else {
+                resolve(body);
             }
-            resolve(body);
         }));
     });
 }
