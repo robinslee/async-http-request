@@ -1,1 +1,1 @@
-# asynch-request
+# async-promised-request
