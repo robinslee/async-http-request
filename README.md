@@ -1,4 +1,4 @@
-# async_request
+# async-http-request
 
 Simply wrapped request with Promise, so you can use async/await of ES7.
 
@@ -7,7 +7,7 @@ Simply wrapped request with Promise, so you can use async/await of ES7.
 Using npm:
 
 ```
-$ npm i -D async_request
+$ npm i -D async-http-request
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ $ npm i -D async_request
 ```js
 "use strict";
 
-const asyncRequest = require("async_request");
+const asyncRequest = require("async-http-request");
 const url = "http://www.google.com";
 
 (async function() {
@@ -27,10 +27,13 @@ const url = "http://www.google.com";
 ```
 
 ### Resolve with response object, instance of [http.IncomingMessage](https://nodejs.org/api/http.html#http_class_http_incomingmessage)
+
+> Note, await could only be used in async function. See [async](https://tc39.github.io/ecma262/#sec-async-function-definitions) & [await](https://tc39.github.io/ecma262/#await)
+
 ```js
 "use strict";
 
-const asyncRequest = require("async_request");
+const asyncRequest = require("async-http-request");
 const url = "http://www.google.com";
 const resolveWithResponse = true;
 
@@ -52,7 +55,7 @@ const resolveWithResponse = true;
 ```js
 "use strict";
 
-const asyncRequest = require("async_request");
+const asyncRequest = require("async-http-request");
 const request = require("request");
 const fs = require("fs");
 
@@ -85,7 +88,7 @@ const resolveWithRequest = true;
 ```js
 "use strict";
 
-const asyncRequest = require("async_request");
+const asyncRequest = require("async-http-request");
 const url = "http://www.google.com";
 
 (async function() {
@@ -99,7 +102,7 @@ const url = "http://www.google.com";
 ```js
 "use strict";
 
-const asyncRequest = require("async_request");
+const asyncRequest = require("async-http-request");
 const url = "http://www.google.com";
 
 (async function() {
