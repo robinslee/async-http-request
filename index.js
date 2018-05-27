@@ -1,5 +1,5 @@
 /*!
- * async-promised-request
+ * async-http-request
  * Copyright(c) 2017 Robin Li
  * MIT Licensed
  */
@@ -39,16 +39,22 @@ module.exports = AsyncRequest;
 function _wrapRequest(doRequest = request) {
     return (opt, ...args) => new Promise((resolve, reject) => {
         let resolveWithResponse = opt && opt.resolveWithResponse;
+        let resolveWithRequest = opt && opt.resolveWithRequest;
         delete opt.resolveWithResponse;
+        delete opt.resolveWithRequest;
 
-        doRequest(opt, ...args.concat((error, response, body) => {
-            if (error) {
-                reject(error);
-            } else if (resolveWithResponse) {
-                resolve(response);
-            } else {
-                resolve(body);
-            }
-        }));
+        if (resolveWithRequest) {
+            resolve(doRequest(opt, ...args));
+        } else {
+            doRequest(opt, ...args.concat((error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else if (resolveWithResponse) {
+                    resolve(response);
+                } else {
+                    resolve(body);
+                }
+            }));
+        }
     });
 }

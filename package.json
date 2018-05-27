@@ -1,5 +1,5 @@
 {
-  "name": "async_request",
+  "name": "async-http-request",
   "version": "1.0.0",
   "description": "Simply wrapped request with Promise, so you can use async/await of ES7.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robinslee/async_request.git"
+    "url": "git+https://github.com/robinslee/async-http-request.git"
   },
   "keywords": [
     "http",
@@ -19,7 +19,7 @@
   "author": "Robin Li",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/robinslee/async_request/issues"
+    "url": "https://github.com/robinslee/async-http-request/issues"
   },
-  "homepage": "https://github.com/robinslee/async_request#readme"
+  "homepage": "https://github.com/robinslee/async-http-request#readme"
 }
