@@ -1,22 +1,25 @@
 {
-  "name": "KoaDemo",
-  "version": "1.0.1",
-  "description": "",
+  "name": "async_request",
+  "version": "1.0.0",
+  "description": "Simply wrapped request with Promise, so you can use async/await of ES7.",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinslee/async_request.git"
+  },
+  "keywords": [
+    "http",
+    "request",
+    "async/await",
+    "util"
+  ],
   "author": "Robin Li",
   "license": "MIT",
-  "dependencies": {
-    "iconv-lite": "^0.4.19",
-    "koa": "^2.3.0",
-    "koa-bodyparser": "^4.2.0",
-    "koa-proxy": "^0.9.0",
-    "request": "^2.83.0",
-    "request-promise-native": "^1.0.5"
+  "bugs": {
+    "url": "https://github.com/robinslee/async_request/issues"
   },
-  "devDependencies": {
-    "babel-core": "^6.26.0"
-  }
+  "homepage": "https://github.com/robinslee/async_request#readme"
 }
